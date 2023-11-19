@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD Example</title>
+</head>
+<body>
+
+<script>
+    // Sample array of objects (initial data)
+    let people = [
+        { id: 1, name: 'John Doe', age: 25 },
+        { id: 2, name: 'Jane Doe', age: 30 },
+        { id: 3, name: 'Bob Smith', age: 22 }
+    ];
+
+    // Function to display people data
+    function displayPeople() {
+        console.log("People List:");
+        console.table(people);
+    }
+
+    // Function to add a new person
+    function addPerson(person) {
+        people.push(person);
+        displayPeople();
+    }
+
+    // Function to update a person by ID
+    function updatePerson(id, updatedData) {
+        const index = people.findIndex(person => person.id === id);
+
+        if (index !== -1) {
+            people[index] = { ...people[index], ...updatedData };
+            displayPeople();
+        } else {
+            console.log(`Person with ID ${id} not found.`);
+        }
+    }
+
+    // Function to delete a person by ID
+    function deletePerson(id) {
+        people = people.filter(person => person.id !== id);
+        displayPeople();
+    }
+
+    // Display initial data
+    displayPeople();
+
+    // Example usage:
+    addPerson({ id: 4, name: 'Alice Johnson', age: 28 });
+    updatePerson(2, { age: 31 });
+    deletePerson(3);
+</script>
+
+</body>
+</html>
